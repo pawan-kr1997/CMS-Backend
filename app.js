@@ -2,6 +2,7 @@ import express from "express";
 import "dotenv/config";
 import { formRoutes } from "./routes/FormRoutes.js";
 import { connectToDatabase } from "./helpers/DatabaseHelper.js";
+import cors from "cors";
 
 import FormDetail from "./models/FormDetail.js";
 import { apiError } from "./helpers/LogHelper.js";
@@ -10,6 +11,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware to parse JSON
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
