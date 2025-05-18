@@ -2,6 +2,7 @@ import { v4 as uuidv4 } from "uuid";
 import FormDetail from "../models/FormDetail.js";
 import { api } from "../helpers/LogHelper.js";
 import { formDetailsDummy } from "../helpers/Data.js";
+import moment from "moment";
 
 export const getForms = async (req, res) => {
   let query = {};
@@ -51,7 +52,7 @@ export const postForm = async (req, res) => {
     cohort: req.body.cohort,
     first_name: req.body.firstName,
     last_name: req.body.lastName,
-    dob: req.body.dob,
+    dob: moment(req.body.dob).format("YYYY-MM-DD"),
     age: req.body.age,
     gender: req.body.gender,
     state: req.body.state,
@@ -79,7 +80,7 @@ export const postFormBulk = async (req, res) => {
       cohort: form.cohort,
       first_name: form.firstName,
       last_name: form.lastName,
-      dob: form.dob,
+      dob: moment(form.dob).format("YYYY-MM-DD"),
       age: form.age,
       gender: form.gender,
       state: form.state,

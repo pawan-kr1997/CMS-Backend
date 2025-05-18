@@ -17,12 +17,7 @@ export const Validate = (reqType) => {
 
         body("lastName").notEmpty().withMessage("Please provide last name"),
 
-        body("dob")
-          .notEmpty()
-          .withMessage("Please provide date of birth")
-          .bail()
-          .isDate()
-          .withMessage("Please provide valid date of birth"),
+        body("dob").notEmpty().withMessage("Please provide date of birth"),
 
         body("age")
           .notEmpty()
