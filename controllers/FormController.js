@@ -1,6 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 import FormDetail from "../models/FormDetail.js";
 import { api } from "../helpers/LogHelper.js";
+import { formDetailsDummy } from "../helpers/Data.js";
 
 export const getForms = async (req, res) => {
   let query = {};
@@ -63,6 +64,51 @@ export const postForm = async (req, res) => {
   };
 
   await FormDetail.create(data);
+
+  return api("Form created successfully", res, {});
+};
+
+export const postFormBulk = async (req, res) => {
+  let dataArr = [];
+  const { forms } = req.body;
+
+  for (const form of forms) {
+    dataArr.push({
+      uuid: uuidv4(),
+      family_id: form.familyId,
+      cohort: form.cohort,
+      first_name: form.firstName,
+      last_name: form.lastName,
+      dob: form.dob,
+      age: form.age,
+      gender: form.gender,
+      state: form.state,
+      vaccination_status: form.vaccinationStatus,
+      height: form.height,
+      weight: Number(form.weightKg) * 1000 + Number(form.weightGrams),
+      bmi: form.bmi,
+      nutrition_status: form.nutritionStatus,
+      enrolled_feeding_program: form.enrolledFeedingProgram,
+    });
+  }
+
+  await FormDetail.bulkCreate(dataArr);
+
+  return api("Form created successfully", res, {});
+};
+
+export const postUpoadData = async (req, res) => {
+  let dataArr = [];
+  let forms = formDetailsDummy;
+
+  for (const form of forms) {
+    dataArr.push({
+      uuid: uuidv4(),
+      ...form,
+    });
+  }
+
+  await FormDetail.bulkCreate(dataArr);
 
   return api("Form created successfully", res, {});
 };

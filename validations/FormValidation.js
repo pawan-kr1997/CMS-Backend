@@ -96,6 +96,17 @@ export const Validate = (reqType) => {
       ];
     }
 
+    case "postFormBulk": {
+      return [
+        body("forms")
+          .notEmpty()
+          .withMessage("Please provide form data")
+          .bail()
+          .isArray({ min: 1 })
+          .withMessage("Please provide atleast one form data"),
+      ];
+    }
+
     case "getForms": {
       return [
         body("cohort")
