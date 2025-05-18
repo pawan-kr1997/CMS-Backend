@@ -6,6 +6,7 @@ import cors from "cors";
 
 import FormDetail from "./models/FormDetail.js";
 import { apiError } from "./helpers/LogHelper.js";
+import { dashboardRoutes } from "./routes/DashboardRoutes.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -20,6 +21,7 @@ await connectToDatabase();
 
 // Basic route
 app.use("/", formRoutes);
+app.use("/", dashboardRoutes);
 
 // Start the server
 app.listen(PORT, () => {
