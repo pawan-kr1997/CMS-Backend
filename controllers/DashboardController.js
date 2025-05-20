@@ -87,11 +87,11 @@ export const getHeightDetails = async (req, res) => {
   const formDetails = await FormDetail.findAll({ where: query });
 
   const ageGroups = [
-    { label: "0-2", min: 0, max: 2, normal: [50, 90] },
-    { label: "2-4", min: 2, max: 4, normal: [85, 105] },
-    { label: "4-6", min: 4, max: 6, normal: [100, 115] },
-    { label: "6-8", min: 6, max: 8, normal: [110, 125] },
-    { label: "8-10", min: 8, max: 10, normal: [120, 140] },
+    { label: "0-2", min: 0, max: 2, normal: [50, 70] },
+    { label: "2-4", min: 2, max: 4, normal: [65, 90] },
+    { label: "4-6", min: 4, max: 6, normal: [93, 115] },
+    { label: "6-8", min: 6, max: 8, normal: [105, 115] },
+    { label: "8-10", min: 8, max: 10, normal: [115, 140] },
   ];
 
   const ageGroupsObj = _.keyBy(ageGroups, "label");
