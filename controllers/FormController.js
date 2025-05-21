@@ -22,7 +22,10 @@ export const getForms = async (req, res) => {
     query.cohort = req.query.cohort;
   }
 
-  const formDetails = await FormDetail.findAll({ where: query });
+  const formDetails = await FormDetail.findAll({
+    where: query,
+    order: [["createdAt", "DESC"]],
+  });
 
   return api("", res, formDetails);
 };
