@@ -24,7 +24,7 @@ export const getForms = async (req, res) => {
 
   const formDetails = await FormDetail.findAll({
     where: query,
-    order: [["createdAt", "DESC"]],
+    order: [["id", "DESC"]],
   });
 
   return api("", res, formDetails);
